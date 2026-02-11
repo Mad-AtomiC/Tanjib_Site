@@ -7,7 +7,7 @@ import { createServer } from "./server";
 export default defineConfig(({ mode }) => {
   console.log('Building for mode:', mode);
   return {
-    base: mode === "production" ? "/Tanjib_Site/" : "/",
+    base: mode === "production" ? "/" : "/",
     server: {
       host: "::",
       port: 8080,
