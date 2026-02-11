@@ -70,6 +70,8 @@ const CarouselRow = ({
                     src={item}
                     alt={`${title} project`}
                     className="object-cover w-full h-full"
+                    loading="lazy"
+                    decoding="async"
                   />
                 </AspectRatio>
               </div>
