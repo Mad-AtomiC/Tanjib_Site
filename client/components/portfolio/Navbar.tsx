@@ -25,14 +25,14 @@ export const Navbar = () => {
     <>
       <nav className="fixed top-6 left-1/2 -translate-x-1/2 z-[100] w-[95%] max-w-6xl">
         <div className="glass rounded-2xl px-6 py-3 flex items-center justify-between shadow-2xl shadow-primary/10 border border-white/5">
-          <a href="/" className="text-2xl font-display font-black tracking-tighter text-foreground flex items-center gap-3">
+          <div className="text-2xl font-display font-black tracking-tighter text-foreground flex items-center gap-3">
             {logoSrc && (
               <img src={logoSrc} alt={siteConfig.logoText} className="h-10 w-10 rounded-full object-cover border border-primary/20" />
             )}
             <span>
               <span className="text-primary">TANJIB</span> AHMED.
             </span>
-          </a>
+          </div>
 
           {/* Desktop Menu */}
           <div className="hidden md:flex items-center gap-1">
