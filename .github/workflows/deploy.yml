@@ -32,13 +32,19 @@ jobs:
       - name: Install pnpm
         uses: pnpm/action-setup@v4
         with:
-          version: 9 # Matches your project's pnpm version or default to latest 9
+          version: 10
 
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
 
       - name: Build
         run: pnpm run build
+
+      - name: Debug Output
+        if: always()
+        run: |
+          echo "Checking dist/spa directory:"
+          ls -R dist/spa || echo "dist/spa not found"
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
@@ -46,7 +52,6 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # This should point to the build output directory
           path: './dist/spa'
 
       - name: Deploy to GitHub Pages
