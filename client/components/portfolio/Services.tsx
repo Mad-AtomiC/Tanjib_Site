@@ -1,21 +1,36 @@
 import { motion } from "framer-motion";
-import { Palette, Share2, Layers, Pencil, Printer } from "lucide-react";
+import { Palette, Layers, Monitor, PenTool, LayoutTemplate, MessageSquare } from "lucide-react";
 
-const services = [
+const skills = [
   {
     icon: <Palette className="w-8 h-8" />,
-    title: "Brand Identity",
-    description: "Creating unique visual identities that capture the essence of your brand and connect with your audience."
+    title: "Social Media Design",
+    description: "Engaging visuals for Facebook, Instagram, and other platforms to boost brand presence."
   },
   {
-    icon: <Share2 className="w-8 h-8" />,
-    title: "Marketing Design",
-    description: "Designing impactful marketing collateral for both digital and print media that drives engagement."
-  },
-  {
-    icon: <Printer className="w-8 h-8" />,
+    icon: <Layers className="w-8 h-8" />,
     title: "Print Design",
-    description: "Editorial design and high-quality print materials that make a lasting physical impression."
+    description: "High-quality brochures, flyers, posters, and marketing materials ready for production."
+  },
+  {
+    icon: <Monitor className="w-8 h-8" />,
+    title: "Website Graphics",
+    description: "Custom assets and visual elements that enhance user experience on web platforms."
+  },
+  {
+    icon: <PenTool className="w-8 h-8" />,
+    title: "Branding & Identity",
+    description: "Comprehensive brand guidelines, logos, and visual systems that tell your story."
+  },
+  {
+    icon: <LayoutTemplate className="w-8 h-8" />,
+    title: "UI/UX Design",
+    description: "User-centric interface designs that prioritize usability and aesthetic appeal."
+  },
+  {
+    icon: <MessageSquare className="w-8 h-8" />,
+    title: "Soft Skills",
+    description: "Customer service, team collaboration, and meeting tight deadlines with high accuracy."
   }
 ];
 
@@ -25,16 +40,16 @@ export const Services = () => {
       <div className="absolute inset-0 bg-primary/5 -skew-y-3 transform origin-top-left -z-10" />
       <div className="container mx-auto">
         <div className="max-w-2xl mb-20">
-          <h2 className="text-4xl md:text-6xl font-display font-extrabold mb-6 bg-gradient-to-br from-violet-300 via-primary to-purple-400 bg-clip-text text-transparent pb-2">Services</h2>
+          <h2 className="text-4xl md:text-6xl font-display font-extrabold mb-6 bg-gradient-to-br from-violet-300 via-primary to-purple-400 bg-clip-text text-transparent pb-2">Skills & Expertise</h2>
           <p className="text-lg text-muted-foreground leading-relaxed">
-            Merging artistic vision with strategic thinking to create impactful digital assets.
+            A diverse skillset combining technical proficiency in Adobe Creative Suite with creative problem-solving.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {services.map((service, index) => (
+          {skills.map((skill, index) => (
             <motion.div
-              key={service.title}
+              key={skill.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
@@ -42,11 +57,11 @@ export const Services = () => {
               className="group p-8 glass-card rounded-[2rem] hover:-translate-y-2"
             >
               <div className="mb-6 w-16 h-16 bg-primary/10 rounded-2xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white group-hover:scale-110 transition-all duration-500">
-                {service.icon}
+                {skill.icon}
               </div>
-              <h3 className="text-2xl font-display font-bold mb-3 group-hover:text-primary transition-colors">{service.title}</h3>
+              <h3 className="text-2xl font-display font-bold mb-3 group-hover:text-primary transition-colors">{skill.title}</h3>
               <p className="text-muted-foreground leading-relaxed">
-                {service.description}
+                {skill.description}
               </p>
             </motion.div>
           ))}

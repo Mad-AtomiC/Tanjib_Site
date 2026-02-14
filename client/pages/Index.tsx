@@ -1,8 +1,8 @@
 import { Navbar } from "@/components/portfolio/Navbar";
 import { Hero } from "@/components/portfolio/Hero";
+import { Experience } from "@/components/portfolio/Experience";
 import { Projects } from "@/components/portfolio/Projects";
 import { Services } from "@/components/portfolio/Services";
-import { About } from "@/components/portfolio/About";
 import { Contact } from "@/components/portfolio/Contact";
 import { Testimonials } from "@/components/portfolio/Testimonials";
 import { FAQ } from "@/components/portfolio/FAQ";
@@ -19,7 +19,7 @@ export default function Index() {
           <Projects />
           <Services />
           <Testimonials />
-          <About />
+          <Experience />
           <FAQ />
           <Contact />
         </main>

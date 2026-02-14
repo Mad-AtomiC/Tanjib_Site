@@ -79,10 +79,10 @@ export const About = () => {
           >
             <h2 className="text-4xl md:text-7xl font-display font-black mb-8 tracking-tighter bg-gradient-to-br from-violet-300 via-primary to-purple-400 bg-clip-text text-transparent pb-2">MEET <br /> THE CREATIVE</h2>
             <p className="text-xl text-muted-foreground mb-6 leading-relaxed">
-              I'm Tanjib Ahmed, a visual storyteller driven by the intersection of strategy and soul. With half a decade of experience, I've mastered the art of turning complex problems into elegant blue-tinted solutions.
+              I'm Tanjib Ahmed, a dynamic and innovative Graphic Designer with over two years of experience in creating impactful visual solutions across digital and print platforms. Skilled in social media design, branding, and Adobe Creative Suite, delivering high-quality graphics under tight deadlines.
             </p>
             <p className="text-xl text-muted-foreground mb-10 leading-relaxed">
-              My work is characterized by precision, purposeful color palettes, and a deep understanding of digital ecosystems.
+              With a strong foundation in computer science, I integrate technology with creativity to produce compelling visuals that enhance brand identity and engagement.
             </p>
 
             <div className="flex gap-4 mb-12">

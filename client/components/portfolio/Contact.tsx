@@ -1,100 +1,126 @@
-import { useState } from "react";
 import { motion } from "framer-motion";
+import { Mail, ArrowRight, Check, Copy } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import { siteConfig } from "@/data/config";
 import { useToast } from "@/components/ui/use-toast";
+import { useState } from "react";
 
 export const Contact = () => {
   const { toast } = useToast();
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: ""
-  });
+  const [copied, setCopied] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-
-    // Basic validation
-    if (!formData.name || !formData.email || !formData.message) {
-      toast({
-        variant: "destructive",
-        description: "Please fill in all fields.",
-      });
-      return;
+  const handleCopyEmail = async () => {
+    const email = "tanjib.tanjib204@gmail.com";
+    try {
+      await navigator.clipboard.writeText(email);
+      setCopied(true);
+      toast({ description: "Email copied to clipboard!", duration: 3000 });
+      setTimeout(() => setCopied(false), 2000);
+    } catch (err) {
+      // Fallback logic
+      try {
+        const textArea = document.createElement("textarea");
+        textArea.value = email;
+        textArea.style.position = "fixed";
+        textArea.style.left = "-9999px";
+        document.body.appendChild(textArea);
+        textArea.focus();
+        textArea.select();
+        document.execCommand('copy');
+        document.body.removeChild(textArea);
+        setCopied(true);
+        toast({ description: "Email copied to clipboard!", duration: 3000 });
+        setTimeout(() => setCopied(false), 2000);
+      } catch (fallbackErr) {
+        toast({ variant: "destructive", description: "Failed to copy email.", duration: 3000 });
+      }
     }
-
-    const subject = `Project Inquiry from ${formData.name}`;
-    const body = `Name: ${formData.name}\nEmail: ${formData.email}\n\nMessage:\n${formData.message}`;
-
-    window.location.href = `mailto:${siteConfig.inquiryEmail}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-
-    toast({
-      description: "Opening your email client...",
-    });
   };
 
   return (
-    <section id="contact" className="py-32 px-6 bg-secondary/10">
-      <div className="container mx-auto">
-        <div className="max-w-4xl mx-auto text-center mb-20">
-          <h2 className="text-5xl md:text-8xl font-display font-black mb-8 tracking-tighter uppercase italic bg-gradient-to-br from-primary to-accent bg-clip-text text-transparent underline decoration-primary/20 underline-offset-8">
-            Start a <br /> Project.
+    <section id="contact" className="py-32 px-6 relative overflow-hidden bg-secondary/5">
+      {/* Background Gradients */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/20 blur-[100px] rounded-full -z-10" />
+
+      <div className="container mx-auto max-w-4xl text-center">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="mb-16"
+        >
+          <h2 className="text-5xl md:text-8xl font-display font-black mb-8 tracking-tighter uppercase italic bg-gradient-to-br from-white via-white/80 to-white/50 bg-clip-text text-transparent">
+            Let's Talk.
           </h2>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            Ready to bring your vision to life? Let's build something extraordinary together.
+            Have a project in mind or just want to say hi? I'm always open to discussing new ideas and opportunities.
           </p>
-        </div>
+        </motion.div>
 
-        <div className="max-w-2xl mx-auto glass-card p-10 rounded-[3rem] border border-white/5">
-          <form className="space-y-6" onSubmit={handleSubmit}>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-3">
-                <label className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Identity</label>
-                <Input
-                  name="name"
-                  value={formData.name}
-                  onChange={handleChange}
-                  placeholder="Your Name"
-                  className="h-16 bg-white/5 border-white/10 rounded-2xl px-6 focus-visible:ring-primary focus-visible:border-primary transition-all text-lg"
-                />
-              </div>
-              <div className="space-y-3">
-                <label className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Email</label>
-                <Input
-                  name="email"
-                  type="email"
-                  value={formData.email}
-                  onChange={handleChange}
-                  placeholder="your@email.com"
-                  className="h-16 bg-white/5 border-white/10 rounded-2xl px-6 focus-visible:ring-primary focus-visible:border-primary transition-all text-lg"
-                />
-              </div>
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          viewport={{ once: true }}
+          transition={{ delay: 0.1 }}
+          className="relative glass-card p-10 md:p-16 rounded-[3rem] border border-white/10 shadow-2xl overflow-hidden group"
+        >
+          <div className="absolute inset-0 bg-gradient-to-b from-white/5 to-transparent opacity-50 pointer-events-none" />
+
+          {/* Email Section */}
+          <div className="relative z-10 flex flex-col items-center gap-8 mb-12">
+            <div className="w-20 h-20 bg-primary/10 rounded-full flex items-center justify-center border border-primary/20 shadow-[0_0_30px_rgba(124,58,237,0.2)]">
+              <Mail className="w-8 h-8 text-primary" />
             </div>
-            <div className="space-y-3">
-              <label className="text-xs font-bold uppercase tracking-[0.2em] text-primary">Inquiry</label>
-              <Textarea
-                name="message"
-                value={formData.message}
-                onChange={handleChange}
-                placeholder="Tell me about your vision..."
-                className="min-h-[180px] bg-white/5 border-white/10 rounded-3xl px-6 py-6 focus-visible:ring-primary focus-visible:border-primary transition-all resize-none text-lg"
-              />
-            </div>
-            <div className="text-center pt-4">
-              <Button type="submit" size="lg" className="rounded-2xl px-16 py-8 text-xl font-bold bg-primary hover:bg-primary/90 shadow-2xl shadow-primary/20 hover:scale-105 transition-all duration-300 w-full md:w-auto">
-                Submit Inquiry
+
+            <h3 className="text-2xl md:text-4xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-white to-white/70">
+              tanjib.tanjib204@gmail.com
+            </h3>
+
+            <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
+              <Button
+                size="lg"
+                className="h-14 px-8 text-lg rounded-xl bg-primary hover:bg-primary/90 shadow-lg shadow-primary/25 hover:scale-105 transition-all duration-300 group"
+                onClick={() => window.location.href = `mailto:${siteConfig.inquiryEmail}`}
+              >
+                Say Hello <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </Button>
+
+              <Button
+                variant="outline"
+                size="lg"
+                className="h-14 px-8 text-lg rounded-xl border-white/10 hover:bg-white/5 hover:text-white transition-all duration-300"
+                onClick={handleCopyEmail}
+              >
+                {copied ? <Check className="mr-2 w-5 h-5 text-green-400" /> : <Copy className="mr-2 w-5 h-5" />}
+                {copied ? "Copied!" : "Copy Email"}
               </Button>
             </div>
-          </form>
-        </div>
+          </div>
+
+          {/* Divider */}
+          <div className="w-full h-px bg-gradient-to-r from-transparent via-white/10 to-transparent my-12" />
+
+          {/* Social Links */}
+          <div className="relative z-10">
+            <p className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-8">Connect Instantly</p>
+            <div className="flex flex-wrap justify-center gap-6">
+              {siteConfig.socialLinks
+                .filter(link => ["WhatsApp", "LinkedIn", "Telegram", "Facebook"].includes(link.label))
+                .map((link, i) => (
+                  <a
+                    key={i}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 px-6 py-4 rounded-xl bg-white/5 border border-white/5 hover:bg-white/10 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1 group"
+                  >
+                    <link.icon className="w-6 h-6 text-muted-foreground group-hover:text-primary transition-colors" />
+                    <span className="font-semibold text-white/80 group-hover:text-white transition-colors">{link.label}</span>
+                  </a>
+                ))}
+            </div>
+          </div>
+        </motion.div>
       </div>
     </section>
   );

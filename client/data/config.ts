@@ -4,8 +4,8 @@ import { testimonials } from "./testimonials";
 export const siteConfig = {
     logoText: "TANJIB AHMED.",
     logoImage: "/assets/logo.png", // Add your logo image at client/assets/logo.png
-    heroTitle: "Visualizing the Future of Digital Identity.",
-    heroSubtitle: "Graphic designer & digital strategist based in Dhaka. I help brands stand out through deep-blue aesthetics and purposeful purple pixels.",
+    heroTitle: "Creating Impactful Visual Solutions.",
+    heroSubtitle: "Dynamic and innovative Graphic Designer with over four years of experience in creating impactful visual solutions across digital and print platforms.",
     resumeUrl: "https://drive.google.com/file/d/1oxK6vYlwm2wFUK81BwHBEyOkn05bRGAm/view?usp=sharing", // Add your resume link here
     inquiryEmail: "tanjib.tanjib204@gmail.com",
     socialLinks,
